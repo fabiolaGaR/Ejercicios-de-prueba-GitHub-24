@@ -1,0 +1,14 @@
+---
+title: "Notas de ejemplo de mi curso de RStudio"
+author: "Fabiola García Rangel"
+date: "2024-07-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Esta es la página principal de cómo publicar páginas web con Github y RStudio, estas son algunas de las páginas que también hemos cargado pero que también requieren ser invocadas por su nombre.
+
+[Página web del ejercicio del análisis del precio del arroz mexicano](https://fabiolagar.github.io/Ejercicios-de-prueba-GitHub-24/analisisPrecioArrozMx.html)
