@@ -1,0 +1,52 @@
+---
+title: "Análisis del precio del arroz"
+author: "Fabiola García Rangel"
+date: "2024-07-10"
+output: 
+  html_document: 
+    toc: TRUE
+    toc_float: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(siebanxicor)
+library(dplyr)
+library(DT)
+library(plotly)
+library(stargazer)
+library(openxlsx)
+
+```
+
+
+# En estas notas en línea hacemos un análisis del precio del arroz en México
+```{r}
+#Importamos los datos del arroz
+arroz=read.xlsx("datosArroz.xlsx")
+arroz$Fecha=as.Date(arroz$Fecha, origin="1899-12-30")
+
+#Queremos una tabla por precio del histórico del arroz en todas sus especies y todos sus orígenes y destino. 
+panelArroz=arroz %>% group_by(Producto, Fecha) %>% summarise(promedio=mean(Precio.Frecuente))
+
+```
+
+```{r}
+serieTiempoArroz = arroz %>% group_by(Fecha) %>% summarise(Precio=mean(Precio.Frecuente), desvEst=sd(Precio.frecuente))
+
+```
+
+Ahora exportamos nuestro panel a una serie de tiempo en excel
+
+```{r}
+
+write.xlsx(panelArroz, "panelArroz.xlsx")
+
+```
+
+```{r}
+arrozFiltrado = arroz %>% filter(arroz$Fecha>="27-05-2024")
+```
+
+
+
